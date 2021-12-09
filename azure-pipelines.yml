@@ -50,6 +50,10 @@ jobs:
         mv $pkg dist 
         rm aztfy
       done
+      cd dist
+      checksum="aztfy_${VERSION}_SHA256SUMS"
+      shasum -a 256 * > $checksum
+      cp $checksum ${checksum}.sig
     displayName: "Build Packages"
     env:
       VERSION: ${{ parameters.release_version }}
